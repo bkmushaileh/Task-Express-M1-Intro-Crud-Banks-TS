@@ -16,15 +16,25 @@ export const createNewAccount = (req: Request, res: Response) => {
   return res.status(201).json(account);
 };
 
-export const deleteAccountByID = (req: Request, res: Response) => {
+export const updateAccountByID = (req: Request, res: Response) => {
   const { accountID } = req.params;
-  const index = accounts.findIndex((account) => account.id === +!accountID);
+  const index = accounts.findIndex((account) => account.id === +accountID!);
   if (index === -1) {
     return res.status(404).json({ message: "Account not found!" });
   }
   const updatedAccount = { id: accountID, ...req.body };
   accounts[index] = updatedAccount;
   return res.status(200).json(updatedAccount);
+};
+export const deleteAccountByID = (req: Request, res: Response) => {
+  const { accountID } = req.params;
+  const index = accounts.findIndex((account) => account.id === +accountID!);
+  if (index === -1) {
+    return res.status(404).json({ message: "Account not found!" });
+  }
+  accounts.splice(index, 1);
+
+  return res.status(204).send();
 };
 
 export const modifyCurrency = (req: Request, res: Response) => {
