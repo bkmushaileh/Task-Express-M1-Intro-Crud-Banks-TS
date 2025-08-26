@@ -3,19 +3,23 @@ import {
   createNewAccount,
   deleteAccountByID,
   getAllAccounts,
+  GetVIPAccounts,
   modifyCurrency,
   updateAccountByID,
 } from "./accounts.controller";
 
-const blogRouter = Router();
+const accountRouter = Router();
 
-blogRouter.get("/", getAllAccounts);
+accountRouter.get("/", getAllAccounts);
 
-blogRouter.post("/", createNewAccount);
+accountRouter.post("/", createNewAccount);
 
-blogRouter.delete("/:accountID", deleteAccountByID);
+accountRouter.delete("/:accountID", deleteAccountByID);
 
-blogRouter.put("/:accountID", updateAccountByID);
+accountRouter.put("/:accountID", updateAccountByID);
 
-blogRouter.get("/:username", modifyCurrency);
-export default blogRouter;
+accountRouter.get("/:username", modifyCurrency);
+
+accountRouter.get("/vip", GetVIPAccounts);
+
+export default accountRouter;
