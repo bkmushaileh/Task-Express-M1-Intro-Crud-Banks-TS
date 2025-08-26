@@ -59,7 +59,6 @@ export const deleteAccountByID = async (req: Request, res: Response) => {
 
 export const GetVIPAccounts = async (req: Request, res: Response) => {
   const { amount } = req.query;
-  console.log("my ammount", amount);
   try {
     if (!amount) {
       return res.status(400).json({ message: "Invalid amount value" });
